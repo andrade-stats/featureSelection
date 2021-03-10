@@ -35,14 +35,15 @@ def setResult(allNrSelectedVariables, allF1_scores, allHeldOutNLL, runId, select
 numpy.random.seed(3523421)
 
 
+# decide whether to run synthetic or real data experiments
+realData = False
+
 NR_RUNS = 50
 
 selectedModelPerformance_BIC = numpy.zeros(shape = (NR_RUNS, 3))
 selectedModelPerformance_AIC = numpy.zeros(shape = (NR_RUNS, 3))
 selectedModelPerformance_CV = numpy.zeros(shape = (NR_RUNS, 3))
 
-
-realData = True
 
 if not realData:
     n = 200 # size of training data
@@ -61,9 +62,9 @@ else:
 for runId in range(NR_RUNS):
     X, y, X_oracleTest, y_oracleTest = dataPreparation.splitTrainingAndTest(X_original, y_original, NR_ORACLE_TEST_SAMPLES)
 
-    print("d = ", X.shape[1])
-    print("n = ", X.shape[0])
-    assert(False)
+    # print("d = ", X.shape[1])
+    # print("n = ", X.shape[0])
+    # assert(False)
 
     allRegParamValues = numpy.logspace(start = -3, stop = 3, num=100)
 
@@ -96,22 +97,6 @@ for runId in range(NR_RUNS):
         
         # find Maximum-Likelihood(ML) estimate by setting (almost) no l2-penalty (high value of C)
         modelForML = sklearn.linear_model.LogisticRegression(penalty = "l2",  fit_intercept = True, C = 1000.0)
-        
-        # print("sklearn.metrics.SCORERS.keys() = ", sklearn.metrics.SCORERS.keys())
-        # assert(False)
-        # cv_results = sklearn.model_selection.cross_validate(modelForML, X[:, selectedCovariateIds], y, cv=3) # , scoring=("neg_log_loss"), return_train_score=False)
-        
-        # selectedX = X[:, selectedCovariateIds]
-        # print(selectedX.shape)
-        # assert(False)
-        # cv_results = sklearn.model_selection.cross_val_score(modelForML, X[:, selectedCovariateIds], y, cv=3) # , scoring=("neg_log_loss"), return_train_score=False)
-        # print("scores = ") 
-        #print(scores)
-        # print(cv_results)
-        # print(numpy.asarray(cv_results))
-        # print(cv_results['test_score'])
-        # assert(False)
-
         
 
         if selectedCovariateIds.shape[0] > 0:

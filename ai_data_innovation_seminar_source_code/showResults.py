@@ -17,7 +17,8 @@ import numpy
 import const
 import matplotlib.pyplot as plt
 
-realData = False # True
+# realData = False
+realData = True
 
 # typeId = const.NR_VARIABLES_ID
 # typeId = const.F1_SCORE_ID
@@ -58,5 +59,5 @@ else:
     assert(False)
 
 # plt.show()
-plt.savefig("../experimentResults/resultPlot_" + dataPrefix + "_" + typePostfix + ".pdf")
+plt.savefig("plots/resultPlot_" + dataPrefix + "_" + typePostfix + ".pdf")
 print("FINISHED")
