@@ -17,12 +17,12 @@ import numpy
 import const
 import matplotlib.pyplot as plt
 
-# realData = False
+#️ realData = False
 realData = True
 
-# typeId = const.NR_VARIABLES_ID
+typeId = const.NR_VARIABLES_ID
 # typeId = const.F1_SCORE_ID
-typeId = const.HOLD_OUT_LOGLIKELIHOOD_ID
+# typeId = const.HOLD_OUT_LOGLIKELIHOOD_ID
 
 
 if not realData:
@@ -42,6 +42,8 @@ TICKLABELS = ["CV", "AIC", "BIC"]
 fig, ax = plt.subplots()
 ax.boxplot(DATA)
 ax.set_xticklabels(TICKLABELS, fontsize = 20)
+# ax.set_yticklabels(fontsize = 20)
+ax.yaxis.set_tick_params(labelsize=16)
 
 if typeId == const.NR_VARIABLES_ID and not realData:
     ax.set_ylim([0.0, 14.0])
